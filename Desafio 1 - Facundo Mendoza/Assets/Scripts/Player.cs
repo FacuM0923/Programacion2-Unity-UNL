@@ -11,13 +11,12 @@ public class Player : MonoBehaviour{
         Debug.Log(Alive());
     }
 
-
     private bool Alive(){
         return life > 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
-        if (!collision.gameObject.CompareTag("Meta")) { return; }
+        if (!collision.gameObject.CompareTag("Goal")) { return; }
         Debug.Log("GANASTE");
     }
 }
