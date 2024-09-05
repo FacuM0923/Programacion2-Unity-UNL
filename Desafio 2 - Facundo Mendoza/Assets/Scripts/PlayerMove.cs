@@ -16,6 +16,8 @@ public class PlayerMove : MonoBehaviour {
     private Rigidbody2D rb2D;
     private Animator animator;
     private SpriteRenderer sprite;
+    private CircleCollider2D collider2D;
+    private int jumpMask;
 
     //Codigo ejecutado cuando el objeto se activa en el nivel
     private void OnEnable(){
@@ -23,6 +25,8 @@ public class PlayerMove : MonoBehaviour {
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        collider2D = GetComponent<CircleCollider2D>();
+        jumpMask = LayerMask.GetMask("Floors", "Platforms");
     }
 
     //Código ejecutado en cada frame del juego (Intervalo variable)
@@ -35,7 +39,7 @@ public class PlayerMove : MonoBehaviour {
         sprite.flipX = velocityX > 0;
         animator.SetInteger("Velocity", velocityX);
 
-        animator.SetBool("InAir", rb2D.velocity.y !=0f);
+        animator.SetBool("InAir", !InContactWithPlatform());
 
     }
 
@@ -43,6 +47,10 @@ public class PlayerMove : MonoBehaviour {
 
         rb2D.AddForce(direction * velocity);
 
+    }
+
+    private bool InContactWithPlatform(){
+        return collider2D.IsTouchingLayers(jumpMask);
     }
 
 }
