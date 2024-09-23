@@ -1879,7 +1879,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: 708224797, guid: 73c6841016c6eef498bb836b86c484c5, type: 3}
       - {fileID: 1661226266, guid: 73c6841016c6eef498bb836b86c484c5, type: 3}
-      m_AnimationSpeed: 1.7628021
+      m_AnimationSpeed: 1.5593014
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -2750,7 +2750,7 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &5635441895812212770
+--- !u!114 &3141176124884983804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
