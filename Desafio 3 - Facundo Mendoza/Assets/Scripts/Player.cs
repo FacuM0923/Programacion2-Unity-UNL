@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour{
     [Header("Configuracion")]
@@ -16,7 +17,24 @@ public class Player : MonoBehaviour{
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
-        if (!collision.gameObject.CompareTag("Goal")) { return; }
-        Debug.Log("GANASTE");
+
+        if (collision.gameObject.CompareTag("Goal")){
+
+            FindAnyObjectByType<Victory>().ShowVictory();
+
+            Debug.Log("GANASTE");
+            FindAnyObjectByType<Victory>().ShowVictory();
+
+        }
+
+        if (collision.gameObject.CompareTag("Traps")){
+
+            FindAnyObjectByType<GameOver>().ShowGameOver();
+
+            Debug.Log("GAME OVER");
+            FindAnyObjectByType<GameOver>().ShowGameOver();
+
+        }
+
     }
 }
