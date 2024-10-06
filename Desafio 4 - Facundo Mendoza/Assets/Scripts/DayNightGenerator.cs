@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class GeneradorDiaNoche : MonoBehaviour
-{
-    [SerializeField] private Camera camera;
+public class GeneradorDiaNoche : MonoBehaviour{
+
+    [SerializeField] private Camera camara;
     [SerializeField] private Color nightColor;
     [SerializeField] private Light2D light2D;
 
@@ -17,36 +17,38 @@ public class GeneradorDiaNoche : MonoBehaviour
 
 
     void Start(){
-        dayColor = camera.backgroundColor;
+        dayColor = camara.backgroundColor;
         StartCoroutine(ChangeColor(durationDay));
     }
 
     IEnumerator ChangeColor(float time){
 
-        Color colorDestinyBack = camera.backgroundColor == dayColor ? nightColor : dayColor;
+        Color colorDestinyBack = camara.backgroundColor == dayColor ? nightColor : dayColor;
         Color colorDestinyLight = light2D.color != Color.white ? Color.white : nightColor;
-        float durationCycle = time * 0.6f;
+        float durationCicle = time * 0.6f;
         float durationChange = time * 0.4f;
 
-        for (int i = 0; i < days; i++) {
-            
-            yield return new WaitForSeconds(durationCycle);
-            float timeRemained = 0;
+        for (int i = 0; i < days; i++){
 
-            while (timeRemained < durationChange){
-                timeRemained += Time.deltaTime;
-                float t = timeRemained / durationChange;
+            yield return new WaitForSeconds(durationCicle);
+
+            float tiempoTranscurrido = 0;
+
+            while (tiempoTranscurrido < durationChange){
+
+                tiempoTranscurrido += Time.deltaTime;
+                float t = tiempoTranscurrido / durationChange;
 
                 float smoothT = Mathf.SmoothStep(0f, 1f, t);
 
-                camera.backgroundColor = Color.Lerp(camera.backgroundColor, colorDestinyBack, smoothT);
+                camara.backgroundColor = Color.Lerp(camara.backgroundColor, colorDestinyBack, smoothT);
                 light2D.color = Color.Lerp(light2D.color, colorDestinyLight, smoothT);
 
                 yield return null;
             }
 
             colorDestinyLight = light2D.color != Color.white ? Color.white : nightColor;
-            colorDestinyBack = camera.backgroundColor == dayColor ? nightColor : dayColor;
+            colorDestinyBack = camara.backgroundColor == dayColor ? nightColor : dayColor;
 
         }
     }
