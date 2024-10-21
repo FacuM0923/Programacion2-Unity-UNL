@@ -4,37 +4,24 @@ using UnityEngine;
 using TMPro;
 
 public class Player : MonoBehaviour{
-    [Header("Configuracion")]
-    [SerializeField] private float life = 5f;
+
+    [SerializeField]
+    private PerfilJugador perfilJugador;
+    public PerfilJugador PerfilJugador { get => perfilJugador; }
 
     public void Modify_Life(float points){
-        life += points;
+        perfilJugador.Vida += points;
         Debug.Log(Alive());
     }
 
     private bool Alive(){
-        return life > 0;
+        return perfilJugador.Vida > 0;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision){
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Meta")) { return; }
 
-        if (collision.gameObject.CompareTag("Goal")){
-
-            FindAnyObjectByType<Victory>().ShowVictory();
-
-            Debug.Log("GANASTE");
-            FindAnyObjectByType<Victory>().ShowVictory();
-
-        }
-
-        if (collision.gameObject.CompareTag("Traps")){
-
-            FindAnyObjectByType<GameOver>().ShowGameOver();
-
-            Debug.Log("GAME OVER");
-            FindAnyObjectByType<GameOver>().ShowGameOver();
-
-        }
-
+        Debug.Log("GANASTE");
     }
 }
