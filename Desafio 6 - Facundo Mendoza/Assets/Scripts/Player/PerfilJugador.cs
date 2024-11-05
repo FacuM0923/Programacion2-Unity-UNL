@@ -38,12 +38,13 @@ public class PerfilJugador : ScriptableObject {
     [SerializeField] private float fuerzaSalto = 5f;
     public float FuerzaSalto { get => fuerzaSalto; set => fuerzaSalto = value; }
 
+    
     [Header("Configuraciones de Atributos")]
     [SerializeField]
     [Range(5, 10)]
     private float vida = 5f;
     public float Vida { get => vida; set => vida = value; }
-
+    
     [Header("Configuraciones SFX")]
 
     [SerializeField] private AudioClip jumpSFX;
