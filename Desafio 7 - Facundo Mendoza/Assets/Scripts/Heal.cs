@@ -5,13 +5,16 @@ using UnityEngine;
 public class Heal : MonoBehaviour{
 
     [Header("Configuracion")]
-    [SerializeField] float points = 1f;
+    [SerializeField] int points = 1;
 
     private void OnParticleCollision(GameObject other){
-        if (other.CompareTag("Player")){
+
+        if (other.CompareTag("Player"))
+        {
             Player player = other.GetComponent<Player>();
             player.Modify_Life(points);
-            Debug.Log("PUNTOS DE DAÑO REALIZADOS AL JUGADOR " + points);
+            Debug.Log(" PUNTOS DE DAÑO REALIZADOS AL JUGADOR " + points);
         }
+
     }
 }

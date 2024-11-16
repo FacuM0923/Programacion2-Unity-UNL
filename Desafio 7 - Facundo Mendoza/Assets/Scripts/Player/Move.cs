@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour {
+public class Move : MonoBehaviour {
 
     //Variables a configurar desde el editor
     [Header("Configuracion")]
@@ -27,10 +27,11 @@ public class PlayerMove : MonoBehaviour {
         sprite = GetComponent<SpriteRenderer>();
         collider2D = GetComponent<CircleCollider2D>();
         jumpMask = LayerMask.GetMask("Floors", "Platforms");
+
     }
 
     //Código ejecutado en cada frame del juego (Intervalo variable)
-    private void Update() {
+    private void Update(){
 
         horizontal_movement = Input.GetAxis("Horizontal");
         direction = new Vector2(horizontal_movement, 0f);
@@ -44,9 +45,7 @@ public class PlayerMove : MonoBehaviour {
     }
 
     private void FixedUpdate(){
-
         rb2D.AddForce(direction * velocity);
-
     }
 
     private bool InContactWithPlatform(){
